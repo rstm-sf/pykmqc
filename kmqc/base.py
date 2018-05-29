@@ -21,7 +21,7 @@ class Instruction(object):
 
 class Gate(Instruction):
 
-    def __init__(self, name, qubits):
+    def __init__(self, name, params, qubits):
         if not isinstance(name, string_types):
             raise TypeError("Название гейта должно быть строкового типа!")
         if not isinstance(qubits, list) or not qubits:
@@ -30,12 +30,19 @@ class Gate(Instruction):
             if not isinstance(q, Qubit):
                 raise TypeError("Кубиты должны иметь тип Qubit!")
         self.name = name
+        self.params = params
         self.qubits = qubits
 
     def to_circuit_json(self):
+        params = None
+        if isinstance(self.params, dict):
+            params = {}
+            for p in self.params.keys():
+                params[p] = self.params[p]
         return {
             "operator": self.name,
-            "qubits": [q.index for q in self.qubits]
+            "qubits": [q.index for q in self.qubits],
+            "params": [params]
         }
 
     def count_qubits(self):

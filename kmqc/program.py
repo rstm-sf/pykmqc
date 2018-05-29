@@ -11,7 +11,7 @@ class Program(object):
         for instruction in instructions:
             if isinstance(instruction, list):
                 self.append_instruction(*instruction)
-            if isinstance(instruction, tuple):
+            elif isinstance(instruction, tuple):
                 self.append_instruction(*instruction)
             elif isinstance(instruction, Program):
                 if id(self) != id(instruction):
