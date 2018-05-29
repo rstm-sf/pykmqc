@@ -1,3 +1,5 @@
+import math
+
 from six import integer_types
 
 from kmqc.base import Gate, Qubit
@@ -22,13 +24,23 @@ class Rx(Gate):
         super().__init__("Rx", params, [_to_qubit(qubit), ])
 
 
+class Ry(Gate):
+    """
+    Ry(theta) = [[cos(theta / 2), -sin(theta / 2)],
+                 [sin(theta / 2), cos(theta / 2)]]
+    """
+    def __init__(self, theta, qubit):
+        params = {"theta": theta, }
+        super().__init__("Ry", params, [_to_qubit(qubit), ])
+
+
 class Rz(Gate):
     """
-    Rz(mu) = [[exp(-1j * mu / 2), 0]
-               [0, exp(1j * mu / 2)]]
+    Rz(phi) = [[exp(-1j * phi / 2), 0]
+               [0, exp(1j * phi / 2)]]
     """
-    def __init__(self, mu, qubit):
-        params = {"mu": mu, }
+    def __init__(self, phi, qubit):
+        params = {"phi": phi, }
         super().__init__("Rz", params, [_to_qubit(qubit), ])
 
 
@@ -58,6 +70,42 @@ class U3(Gate):
     def __init__(self, theta, phi, mu, qubit):
         params = {"theta": theta, "phi": phi, "mu": mu, }
         super().__init__("u3", params, [_to_qubit(qubit), ])
+
+
+class Z(U1):
+    """
+    Z = [[1, 0],
+         [0, -1]]
+    """
+    def __init__(self, qibit):
+        super().__init__(math.pi, qibit)
+
+
+class S_H(U1):
+    """
+    S = [[1, 0],
+         [0, -1j]]
+    """
+    def __init__(self, qibit):
+        super().__init__(-math.pi / 2.0, qibit)
+
+
+class X(U3):
+    """
+    X = [[0, 1],
+         [1, 0]]
+    """
+    def __init__(self, qibit):
+        super().__init__(math.pi, 0.0, math.pi, qibit)
+
+
+class Y(U3):
+    """
+    Y = [[0, 0 - 1j],
+         [0 + 1j, 0]]
+    """
+    def __init__(self, qibit):
+        super().__init__(math.pi, math.pi / 2.0, math.pi / 2.0, qibit)
 
 
 def _make_gate(name, count_qubits):
@@ -119,14 +167,19 @@ CCNOT = [[1, 0, 0, 0, 0, 0, 0, 0],
 
 DEFINITE_GATES = {
     "Rx": Rx,
+    "Ry": Ry,
     "Rz": Rz,
     "U1": U1,
     "U2": U2,
     "U3": U3,
     "H": H,
     "S": S,
+    "S_H": S_H,
     "T": T,
     "T_H": T_H,
+    "X": X,
+    "Y": Y,
+    "Z": Z,
     "CNOT": CNOT,
     "CCNOT": CCNOT,
 }
