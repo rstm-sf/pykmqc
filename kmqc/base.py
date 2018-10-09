@@ -42,7 +42,7 @@ class Gate(Instruction):
         return {
             "operator": self.name,
             "qubits": [q.index for q in self.qubits],
-            "params": [params]
+            "params": params,
         }
 
     def count_qubits(self):
