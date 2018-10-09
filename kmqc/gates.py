@@ -51,7 +51,7 @@ class U1(Gate):
     """
     def __init__(self, mu, qubit):
         params = {"mu": mu, }
-        super().__init__("u1", params, [_to_qubit(qubit), ])
+        super().__init__("U1", params, [_to_qubit(qubit), ])
 
 
 class U2(Gate):
@@ -60,7 +60,7 @@ class U2(Gate):
     """
     def __init__(self, phi, mu, qubit):
         params = {"phi": phi, "mu": mu, }
-        super().__init__("u2", params, [_to_qubit(qubit), ])
+        super().__init__("U2", params, [_to_qubit(qubit), ])
 
 
 class U3(Gate):
@@ -69,7 +69,7 @@ class U3(Gate):
     """
     def __init__(self, theta, phi, mu, qubit):
         params = {"theta": theta, "phi": phi, "mu": mu, }
-        super().__init__("u3", params, [_to_qubit(qubit), ])
+        super().__init__("U3", params, [_to_qubit(qubit), ])
 
 
 class Z(U1):
