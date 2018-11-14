@@ -33,7 +33,7 @@ def _to_qubit(qubit):
     elif isinstance(qubit, Qubit):
         return qubit
     else:
-        raise TypeError("Кубит должен быть целого типа или Qubit!")
+        raise TypeError('Кубит должен быть целого типа или Qubit!')
 
 
 class Rx(Gate):
@@ -43,8 +43,8 @@ class Rx(Gate):
     """
 
     def __init__(self, mu, qubit):
-        params = {"mu": mu, }
-        super().__init__("Rx", params, [_to_qubit(qubit), ])
+        params = {'mu': mu, }
+        super().__init__('Rx', params, [_to_qubit(qubit), ])
 
 
 class Ry(Gate):
@@ -54,8 +54,8 @@ class Ry(Gate):
     """
 
     def __init__(self, theta, qubit):
-        params = {"theta": theta, }
-        super().__init__("Ry", params, [_to_qubit(qubit), ])
+        params = {'theta': theta, }
+        super().__init__('Ry', params, [_to_qubit(qubit), ])
 
 
 class Rz(Gate):
@@ -65,8 +65,8 @@ class Rz(Gate):
     """
 
     def __init__(self, phi, qubit):
-        params = {"phi": phi, }
-        super().__init__("Rz", params, [_to_qubit(qubit), ])
+        params = {'phi': phi, }
+        super().__init__('Rz', params, [_to_qubit(qubit), ])
 
 
 class U1(Gate):
@@ -76,8 +76,8 @@ class U1(Gate):
     """
 
     def __init__(self, mu, qubit):
-        params = {"mu": mu, }
-        super().__init__("U1", params, [_to_qubit(qubit), ])
+        params = {'mu': mu, }
+        super().__init__('U1', params, [_to_qubit(qubit), ])
 
 
 class U2(Gate):
@@ -86,8 +86,8 @@ class U2(Gate):
     """
 
     def __init__(self, phi, mu, qubit):
-        params = {"phi": phi, "mu": mu, }
-        super().__init__("U2", params, [_to_qubit(qubit), ])
+        params = {'phi': phi, 'mu': mu, }
+        super().__init__('U2', params, [_to_qubit(qubit), ])
 
 
 class U3(Gate):
@@ -96,8 +96,8 @@ class U3(Gate):
     """
 
     def __init__(self, theta, phi, mu, qubit):
-        params = {"theta": theta, "phi": phi, "mu": mu, }
-        super().__init__("U3", params, [_to_qubit(qubit), ])
+        params = {'theta': theta, 'phi': phi, 'mu': mu, }
+        super().__init__('U3', params, [_to_qubit(qubit), ])
 
 
 class Z(U1):
@@ -146,38 +146,38 @@ def _make_gate(name, count_qubits):
             qubits = list(qubits)
             if len(qubits) != count_qubits:
                 raise ValueError(
-                    "Количество кубитов для {} должно равняться {}!".format(
+                    'Количество кубитов для {} должно равняться {}!'.format(
                         name, count_qubits))
             return Gate(name, None, [_to_qubit(q) for q in qubits])
         return constructor
     return gate
 
 
-H = _make_gate("Hadamard", 1)()
+H = _make_gate('Hadamard', 1)()
 """
 H = sqrt(2) / 2 * [[1, 1],
                    [1, -1]]
 """
 
-S = _make_gate("S", 1)()
+S = _make_gate('S', 1)()
 """
 S = [[1, 0],
      [0, 1j]]
 """
 
-T = _make_gate("T", 1)()
+T = _make_gate('T', 1)()
 """
 T = [[1, 0],
      [0, exp(1j * pi / 4)]]
 """
 
-T_H = _make_gate("THerm", 1)()
+T_H = _make_gate('THerm', 1)()
 """
 T = T ^ H = [[1, 0],
              [0, exp(-1j * pi / 4)]]
 """
 
-CNOT = _make_gate("CNOT", 2)()
+CNOT = _make_gate('CNOT', 2)()
 """
 CNOT = [[1, 0, 0, 0],
         [0, 1, 0, 0],
@@ -185,7 +185,7 @@ CNOT = [[1, 0, 0, 0],
         [0, 0, 1, 0]]
 """
 
-CCNOT = _make_gate("CCNOT", 3)()
+CCNOT = _make_gate('CCNOT', 3)()
 """
 CCNOT = [[1, 0, 0, 0, 0, 0, 0, 0],
          [0, 1, 0, 0, 0, 0, 0, 0],
@@ -198,20 +198,20 @@ CCNOT = [[1, 0, 0, 0, 0, 0, 0, 0],
 """
 
 DEFINITE_GATES = {
-    "Rx": Rx,
-    "Ry": Ry,
-    "Rz": Rz,
-    "U1": U1,
-    "U2": U2,
-    "U3": U3,
-    "H": H,
-    "S": S,
-    "S_H": S_H,
-    "T": T,
-    "T_H": T_H,
-    "X": X,
-    "Y": Y,
-    "Z": Z,
-    "CNOT": CNOT,
-    "CCNOT": CCNOT,
+    'Rx': Rx,
+    'Ry': Ry,
+    'Rz': Rz,
+    'U1': U1,
+    'U2': U2,
+    'U3': U3,
+    'H': H,
+    'S': S,
+    'S_H': S_H,
+    'T': T,
+    'T_H': T_H,
+    'X': X,
+    'Y': Y,
+    'Z': Z,
+    'CNOT': CNOT,
+    'CCNOT': CCNOT,
 }

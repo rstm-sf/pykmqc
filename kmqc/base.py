@@ -27,7 +27,7 @@ class Qubit(object):
 
     def __init__(self, index):
         if not isinstance(index, integer_types) and index < 0:
-            raise TypeError("Инедкс должен быть целым неотрицательным числом!")
+            raise TypeError('Инедкс должен быть целым неотрицательным числом!')
         self.index = index
 
     def __eq__(self, other):
@@ -38,19 +38,19 @@ class Qubit(object):
 
 
 class Instruction(object):
-    """ Абстрактный класс. """
+    """Абстрактный класс."""
 
 
 class Gate(Instruction):
 
     def __init__(self, name, params, qubits):
         if not isinstance(name, string_types):
-            raise TypeError("Название гейта должно быть строкового типа!")
+            raise TypeError('Название гейта должно быть строкового типа!')
         if not isinstance(qubits, list) or not qubits:
-            raise TypeError("Кубиты должны передаваться в непустом списке!")
+            raise TypeError('Кубиты должны передаваться в непустом списке!')
         for q in qubits:
             if not isinstance(q, Qubit):
-                raise TypeError("Кубиты должны иметь тип Qubit!")
+                raise TypeError('Кубиты должны иметь тип Qubit!')
         self.name = name
         self.params = params
         self.qubits = qubits
@@ -62,9 +62,9 @@ class Gate(Instruction):
             for p in self.params.keys():
                 params[p] = self.params[p]
         return {
-            "operator": self.name,
-            "qubits": [q.index for q in self.qubits],
-            "params": params,
+            'operator': self.name,
+            'qubits': [q.index for q in self.qubits],
+            'params': params,
         }
 
     def count_qubits(self):

@@ -56,6 +56,6 @@ class Connection(object):
                 count_qubits = instruction.count_qubits()
             circuit.append(instruction.to_circuit_json())
         return {
-            "count_qubits": count_qubits,
-            "circuit": circuit,
+            'count_qubits': count_qubits,
+            'circuit': circuit,
         }
