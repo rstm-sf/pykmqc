@@ -24,6 +24,13 @@ r = conn.execute(p)
 print(r)
 ```
 
+```
+[qvm_conn]
+endpoint = http://httpbin.org/post
+user_id  = user_id
+api_key  = api_key
+```
+
 ```python
 import kmqc
 
@@ -31,15 +38,13 @@ from kmqc import gates, Program
 
 
 p = Program(
-        gates.X(1),
-        gates.H(0),
-        gates.H(1),
-        gates.CNOT(0, 1),
-        gates.H(0)
-    )
-endpoint = 'http://httpbin.org/post'
-user_id, api_key = 'user_id', 'api_key'
-conn = kmqc.connect(endpoint, user_id, api_key)
+    gates.X(1),
+    gates.H(0),
+    gates.H(1),
+    gates.CNOT(0, 1),
+    gates.H(0)
+)
+conn = kmqc.connect(**kmqc.config('qvm_conn.ini', 'qvm_conn'))
 r = conn.execute(p)
 print(r)
 ```
