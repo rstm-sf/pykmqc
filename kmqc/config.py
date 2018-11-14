@@ -20,32 +20,20 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from kmqc import api
-from kmqc import base
-from kmqc import config
-from kmqc import gates
-from kmqc import program
-
-from kmqc.api import Connection
-from kmqc.base import Qubit
-from kmqc.config import config
-from kmqc.gates import DEFINITE_GATES
-from kmqc.program import Program
+from configparser import ConfigParser
 
 
-__all__ = [
-    'connect', 'Connection',
-    'Qubit'
-    'config'
-    'DEFINITE_GATES',
-    'Program',
-]
+def config(filename, section):
+    parser = ConfigParser()
+    parser.read(filename)
 
-__version__ = 'alpha'
+    prop = {}
+    if parser.has_section(section):
+        params = parser.items(section)
+        for param in params:
+            prop[param[0]] = param[1]
+    else:
+        raise Exception(
+            'Section {0} not found in the {1} file'.format(section, filename))
 
-
-def connect(*args, **kwargs):
-    return Connection(*args, **kwargs)
-
-
-connect.__doc__ = Connection.__init__.__doc__
+    return prop
