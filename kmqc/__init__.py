@@ -41,7 +41,7 @@ __all__ = [
     'Program',
 ]
 
-__version__ = 'alpha'
+__version__ = '1.0.1.0'
 
 
 def connect(*args, **kwargs):
