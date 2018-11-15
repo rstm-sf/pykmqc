@@ -32,7 +32,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='kmqc',
-    version='1.0.1.0',
+    version='1.0.1.1',
     author='Rustam Sayfutdinov',
     author_email='rstm-sf@gmail.com',
     description='A package for client',
