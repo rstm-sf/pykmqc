@@ -77,7 +77,7 @@ class Gate(Instruction):
         return params
 
 
-class QubitGate(Gate)
+class QubitGate(Gate):
 
     def __init__(self, name, params, qubits):
         super().__init__(name, params, qubits)
