@@ -29,7 +29,7 @@ from kmqc.base import Gate, Qudit
 
 def _to_qudit(qudit):
     if isinstance(qubit, integer_types):
-        return Qudit(qubit)
+        return Qudit(qudit)
     elif isinstance(qudit, Qudit):
         return qudit
     else:
