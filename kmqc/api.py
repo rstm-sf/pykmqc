@@ -50,12 +50,11 @@ class Connection(object):
 
     def _get_payload(self, program):
         circuit = list()
-        count_qubits = 0
+        qubits = set()
         for instruction in program:
-            if count_qubits < instruction.count_qubits():
-                count_qubits = instruction.count_qubits()
+            qubits |= set(instruction.qubits)
             circuit.append(instruction.to_circuit_json())
         return {
-            'count_qubits': count_qubits,
+            'count_qubits': len(qubits),
             'circuit': circuit,
         }
