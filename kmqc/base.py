@@ -58,15 +58,15 @@ class Gate(Instruction):
     def to_circuit_json(self):
         return {
             'operator': self.name,
-            'qubits': self.get_qudit_idxs(),
+            'qudits': self.get_qudit_idxs(),
             'params': self.get_params_or_None(),
         }
 
     def count_qudits(self):
-        return len(self.qubits)
+        return len(self.qudits)
 
     def get_qudit_idxs(self):
-        return [q.index for q in self.qubits]
+        return [q.index for q in self.qudits]
 
     def get_params_or_None(self):
         params = None
@@ -75,3 +75,16 @@ class Gate(Instruction):
             for p in self.params.keys():
                 params[p] = self.params[p]
         return params
+
+
+class QubitGate(Gate)
+
+    def __init__(self, name, params, qubits):
+        super().__init__(name, params, qubits)
+
+    def to_circuit_json(self):
+        return {
+            'operator': self.name,
+            'qubits': self.get_qudit_idxs(),
+            'params': self.get_params_or_None(),
+        }

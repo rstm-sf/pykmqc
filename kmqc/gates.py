@@ -24,7 +24,7 @@ import math
 
 from six import integer_types
 
-from kmqc.base import Gate, Qudit
+from kmqc.base import QubitGate, Qudit
 
 
 def _to_qudit(qudit):
@@ -36,7 +36,7 @@ def _to_qudit(qudit):
         raise TypeError('Кубит должен быть целого типа или Qudit!')
 
 
-class Rx(Gate):
+class Rx(QubitGate):
     """
     Rx(mu) = [[cos(mu / 2), -1j * sin(mu / 2)],
                [-1j * sin(mu / 2), cos(mu / 2)]]
@@ -47,7 +47,7 @@ class Rx(Gate):
         super().__init__('Rx', params, [_to_qudit(qubit), ])
 
 
-class Ry(Gate):
+class Ry(QubitGate):
     """
     Ry(theta) = [[cos(theta / 2), -sin(theta / 2)],
                  [sin(theta / 2), cos(theta / 2)]]
@@ -58,7 +58,7 @@ class Ry(Gate):
         super().__init__('Ry', params, [_to_qudit(qubit), ])
 
 
-class Rz(Gate):
+class Rz(QubitGate):
     """
     Rz(phi) = [[exp(-1j * phi / 2), 0]
                [0, exp(1j * phi / 2)]]
@@ -69,7 +69,7 @@ class Rz(Gate):
         super().__init__('Rz', params, [_to_qudit(qubit), ])
 
 
-class U1(Gate):
+class U1(QubitGate):
     """
     U1(mu) = [[1, 0],
                [0, exp(1j * mu)]]
@@ -80,7 +80,7 @@ class U1(Gate):
         super().__init__('U1', params, [_to_qudit(qubit), ])
 
 
-class U2(Gate):
+class U2(QubitGate):
     """
     U2(mu) = Rz(phi + pi / 2) Rx(pi / 2) Rz(mu - pi / 2)
     """
@@ -90,7 +90,7 @@ class U2(Gate):
         super().__init__('U2', params, [_to_qudit(qubit), ])
 
 
-class U3(Gate):
+class U3(QubitGate):
     """
     U3(mu) = Rz(phi + 3 * pi) Rx(pi / 2) Rz(theta + pi) Rx(pi / 2) Rz(mu)
     """
@@ -140,7 +140,7 @@ class Y(U3):
         super().__init__(math.pi, math.pi / 2.0, math.pi / 2.0, qubit)
 
 
-def _make_gate(name, count_qubits):
+def _make_qubit_gate(name, count_qubits):
     def gate():
         def constructor(*qubits):
             qubits = list(qubits)
@@ -148,36 +148,36 @@ def _make_gate(name, count_qubits):
                 raise ValueError(
                     'Количество кубитов для {} должно равняться {}!'.format(
                         name, count_qubits))
-            return Gate(name, None, [_to_qudit(q) for q in qubits])
+            return QubitGate(name, None, [_to_qudit(q) for q in qubits])
         return constructor
     return gate
 
 
-H = _make_gate('Hadamard', 1)()
+H = _make_qubit_gate('Hadamard', 1)()
 """
 H = sqrt(2) / 2 * [[1, 1],
                    [1, -1]]
 """
 
-S = _make_gate('S', 1)()
+S = _make_qubit_gate('S', 1)()
 """
 S = [[1, 0],
      [0, 1j]]
 """
 
-T = _make_gate('T', 1)()
+T = _make_qubit_gate('T', 1)()
 """
 T = [[1, 0],
      [0, exp(1j * pi / 4)]]
 """
 
-T_H = _make_gate('THerm', 1)()
+T_H = _make_qubit_gate('THerm', 1)()
 """
 T = T ^ H = [[1, 0],
              [0, exp(-1j * pi / 4)]]
 """
 
-CNOT = _make_gate('CNOT', 2)()
+CNOT = _make_qubit_gate('CNOT', 2)()
 """
 CNOT = [[1, 0, 0, 0],
         [0, 1, 0, 0],
@@ -185,7 +185,7 @@ CNOT = [[1, 0, 0, 0],
         [0, 0, 1, 0]]
 """
 
-CCNOT = _make_gate('CCNOT', 3)()
+CCNOT = _make_qubit_gate('CCNOT', 3)()
 """
 CCNOT = [[1, 0, 0, 0, 0, 0, 0, 0],
          [0, 1, 0, 0, 0, 0, 0, 0],
