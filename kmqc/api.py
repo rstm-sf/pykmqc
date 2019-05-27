@@ -52,7 +52,7 @@ class Connection(object):
         circuit = list()
         qubits = set()
         for instruction in program:
-            qubits |= set(instruction.get_qubits_idx())
+            qubits |= set(instruction.get_qudit_idxs())
             circuit.append(instruction.to_circuit_json())
         return {
             'count_qubits': len(qubits),

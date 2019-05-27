@@ -24,16 +24,16 @@ import math
 
 from six import integer_types
 
-from kmqc.base import Gate, Qubit
+from kmqc.base import Gate, Qudit
 
 
-def _to_qubit(qubit):
+def _to_qudit(qudit):
     if isinstance(qubit, integer_types):
-        return Qubit(qubit)
-    elif isinstance(qubit, Qubit):
-        return qubit
+        return Qudit(qubit)
+    elif isinstance(qudit, Qudit):
+        return qudit
     else:
-        raise TypeError('Кубит должен быть целого типа или Qubit!')
+        raise TypeError('Кубит должен быть целого типа или Qudit!')
 
 
 class Rx(Gate):
@@ -44,7 +44,7 @@ class Rx(Gate):
 
     def __init__(self, mu, qubit):
         params = {'mu': mu, }
-        super().__init__('Rx', params, [_to_qubit(qubit), ])
+        super().__init__('Rx', params, [_to_qudit(qubit), ])
 
 
 class Ry(Gate):
@@ -55,7 +55,7 @@ class Ry(Gate):
 
     def __init__(self, theta, qubit):
         params = {'theta': theta, }
-        super().__init__('Ry', params, [_to_qubit(qubit), ])
+        super().__init__('Ry', params, [_to_qudit(qubit), ])
 
 
 class Rz(Gate):
@@ -66,7 +66,7 @@ class Rz(Gate):
 
     def __init__(self, phi, qubit):
         params = {'phi': phi, }
-        super().__init__('Rz', params, [_to_qubit(qubit), ])
+        super().__init__('Rz', params, [_to_qudit(qubit), ])
 
 
 class U1(Gate):
@@ -77,7 +77,7 @@ class U1(Gate):
 
     def __init__(self, mu, qubit):
         params = {'mu': mu, }
-        super().__init__('U1', params, [_to_qubit(qubit), ])
+        super().__init__('U1', params, [_to_qudit(qubit), ])
 
 
 class U2(Gate):
@@ -87,7 +87,7 @@ class U2(Gate):
 
     def __init__(self, phi, mu, qubit):
         params = {'phi': phi, 'mu': mu, }
-        super().__init__('U2', params, [_to_qubit(qubit), ])
+        super().__init__('U2', params, [_to_qudit(qubit), ])
 
 
 class U3(Gate):
@@ -97,7 +97,7 @@ class U3(Gate):
 
     def __init__(self, theta, phi, mu, qubit):
         params = {'theta': theta, 'phi': phi, 'mu': mu, }
-        super().__init__('U3', params, [_to_qubit(qubit), ])
+        super().__init__('U3', params, [_to_qudit(qubit), ])
 
 
 class Z(U1):
@@ -148,7 +148,7 @@ def _make_gate(name, count_qubits):
                 raise ValueError(
                     'Количество кубитов для {} должно равняться {}!'.format(
                         name, count_qubits))
-            return Gate(name, None, [_to_qubit(q) for q in qubits])
+            return Gate(name, None, [_to_qudit(q) for q in qubits])
         return constructor
     return gate
 

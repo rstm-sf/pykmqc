@@ -23,7 +23,7 @@
 from six import integer_types, string_types
 
 
-class Qubit(object):
+class Qudit(object):
 
     def __init__(self, index):
         if not isinstance(index, integer_types) and index < 0:
@@ -31,7 +31,7 @@ class Qubit(object):
         self.index = index
 
     def __eq__(self, other):
-        return isinstance(other, Qubit) and other.index == self.index
+        return isinstance(other, Qudit) and other.index == self.index
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -43,32 +43,35 @@ class Instruction(object):
 
 class Gate(Instruction):
 
-    def __init__(self, name, params, qubits):
+    def __init__(self, name, params, qudits):
         if not isinstance(name, string_types):
             raise TypeError('Название гейта должно быть строкового типа!')
-        if not isinstance(qubits, list) or not qubits:
+        if not isinstance(qudits, list) or not qudits:
             raise TypeError('Кубиты должны передаваться в непустом списке!')
-        for q in qubits:
-            if not isinstance(q, Qubit):
-                raise TypeError('Кубиты должны иметь тип Qubit!')
+        for q in qudits:
+            if not isinstance(q, Qudit):
+                raise TypeError('Кубиты должны иметь тип Qudit!')
         self.name = name
         self.params = params
-        self.qubits = qubits
+        self.qudits = qudits
 
     def to_circuit_json(self):
+        return {
+            'operator': self.name,
+            'qubits': self.get_qudit_idxs(),
+            'params': self.get_params_or_None(),
+        }
+
+    def count_qudits(self):
+        return len(self.qubits)
+
+    def get_qudit_idxs(self):
+        return [q.index for q in self.qubits]
+
+    def get_params_or_None(self):
         params = None
         if isinstance(self.params, dict):
             params = {}
             for p in self.params.keys():
                 params[p] = self.params[p]
-        return {
-            'operator': self.name,
-            'qubits': self.get_qubits_idx(),
-            'params': params,
-        }
-
-    def count_qubits(self):
-        return len(self.qubits)
-
-    def get_qubits_idx(self):
-        return [q.index for q in self.qubits]
+        return params
