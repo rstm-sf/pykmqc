@@ -63,7 +63,7 @@ class Gate(Instruction):
                 params[p] = self.params[p]
         return {
             'operator': self.name,
-            'qubits': get_qubits_idx(),
+            'qubits': self.get_qubits_idx(),
             'params': params,
         }
 
