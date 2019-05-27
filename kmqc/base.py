@@ -37,6 +37,12 @@ class Qudit(object):
         return not self.__eq__(other)
 
 
+class Qubit(Qudit):
+
+    def __init__(self, index):
+        super().__init__(index)
+
+
 class Instruction(object):
     """Абстрактный класс."""
 

@@ -27,7 +27,7 @@ from kmqc import gates
 from kmqc import program
 
 from kmqc.api import Connection
-from kmqc.base import Qudit
+from kmqc.base import Qudit, Qubit
 from kmqc.config import config
 from kmqc.gates import DEFINITE_GATES
 from kmqc.program import Program
