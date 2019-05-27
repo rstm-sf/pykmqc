@@ -106,8 +106,8 @@ class Z(U1):
          [0, -1]]
     """
 
-    def __init__(self, qibit):
-        super().__init__(math.pi, qibit)
+    def __init__(self, qubit):
+        super().__init__(math.pi, qubit)
 
 
 class S_H(U1):
@@ -116,8 +116,8 @@ class S_H(U1):
          [0, -1j]]
     """
 
-    def __init__(self, qibit):
-        super().__init__(-math.pi / 2.0, qibit)
+    def __init__(self, qubit):
+        super().__init__(-math.pi / 2.0, qubit)
 
 
 class X(U3):
@@ -126,8 +126,8 @@ class X(U3):
          [1, 0]]
     """
 
-    def __init__(self, qibit):
-        super().__init__(math.pi, 0.0, math.pi, qibit)
+    def __init__(self, qubit):
+        super().__init__(math.pi, 0.0, math.pi, qubit)
 
 
 class Y(U3):
@@ -136,8 +136,8 @@ class Y(U3):
          [0 + 1j, 0]]
     """
 
-    def __init__(self, qibit):
-        super().__init__(math.pi, math.pi / 2.0, math.pi / 2.0, qibit)
+    def __init__(self, qubit):
+        super().__init__(math.pi, math.pi / 2.0, math.pi / 2.0, qubit)
 
 
 def _make_gate(name, count_qubits):
