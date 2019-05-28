@@ -51,7 +51,7 @@ class Connection(object):
     def _get_payload(self, program):
         if isinstance(program[0], InitDimQudit):
             return self._get_payload_qudit(program)
-        else
+        else:
             return self._get_payload_qubit(program)
 
 
