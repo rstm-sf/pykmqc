@@ -49,6 +49,27 @@ class Connection(object):
         return session
 
     def _get_payload(self, program):
+        if isinstance(program[0], InitDimQudit):
+            return self._get_payload_qudit(program)
+        else
+            return self._get_payload_qubit(program)
+
+
+    def _get_payload_qudit(self, program):
+        circuit = list()
+        qudits = set()
+        dimension = program[0].dimension
+        del program[0]
+        for instruction in program:
+            qudits |= set(instruction.get_qudit_idxs())
+            circuit.append(instruction.to_circuit_json())
+        return {
+            'count_qudits': len(qudits),
+            'dimension': dimension,
+            'circuit': circuit,
+        }
+
+    def _get_payload_qubit(self, program):
         circuit = list()
         qubits = set()
         for instruction in program:

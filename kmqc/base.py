@@ -47,6 +47,13 @@ class Instruction(object):
     """Абстрактный класс."""
 
 
+class InitDimQudit(Instruction):
+
+    def __init__(self, dimension):
+        self.dimension = dimension
+
+
+
 class Gate(Instruction):
 
     def __init__(self, name, params, qudits):
