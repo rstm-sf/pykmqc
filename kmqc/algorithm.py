@@ -62,7 +62,7 @@ class ApplyZ_all(Program):
         self.instructions = list()
         for i in range(len(k_list)):
             self.append_instruction(
-                ApplyZ(i, (word * k[i]) / n, qudit))
+                ApplyZ(i, (word * k_list[i]) / n, qudit))
         return instr
 
 
@@ -75,7 +75,7 @@ class ApplyZconjugate_all(Program):
         self.instructions = list()
         for i in reversed(range(len(k_list))):
             self.append_instruction(
-                ApplyZconjugate(i, (word * k[i]) / n, qudit))
+                ApplyZconjugate(i, (word * k_list[i]) / n, qudit))
         return instr
 
 
