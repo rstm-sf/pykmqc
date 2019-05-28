@@ -54,7 +54,6 @@ class Connection(object):
         else:
             return self._get_payload_qubit(program)
 
-
     def _get_payload_qudit(self, program):
         circuit = list()
         qudits = set()

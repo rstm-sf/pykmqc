@@ -32,7 +32,7 @@ class ApplyF0(Program):
     def __init__(self, dim, qudit):
         self.instructions = self._get_instr(dim, qudit)
 
-    def _get_instr(dim, qudit):
+    def _get_instr(self, dim, qudit):
         instr = list()
         for i in range(dim):
             b = math.sqrt((dim - i) / dim)
@@ -46,7 +46,7 @@ class ApplyF0conjugate(Program):
     def __init__(self, dim, qudit):
         self.instructions = self._get_instr(dim, qudit)
 
-    def _get_instr(dim, qudit):
+    def _get_instr(self, dim, qudit):
         instr = list()
         for i in reversed(range(dim)):
             b = math.sqrt((dim - i) / dim)
@@ -60,7 +60,7 @@ class ApplyZ_all(Program):
     def __init__(self, word, k_list, qudit):
         self.instructions = self._get_instr(word, k_list, qudit)
 
-    def _get_instr(word, k_list, qudit):
+    def _get_instr(self, word, k_list, qudit):
         instr = list()
         for i in range(len(k_list)):
             instr.append_instruction(
@@ -73,7 +73,7 @@ class ApplyZconjugate_all(Program):
     def __init__(self, word, k_list, qudit):
         self.instructions = self._get_instr(word, k_list, qudit)
 
-    def _get_instr(word, k_list, qudit):
+    def _get_instr(self, word, k_list, qudit):
         instr = list()
         for i in reversed(range(len(k_list))):
             instr.append_instruction(
@@ -87,7 +87,7 @@ class HashFun(Program):
         algo = self._get_algo(word, k_list, qudit)
         self.instructions = algo.instructions
 
-    def _get_algo(word, k_list, qudit):
+    def _get_algo(self, word, k_list, qudit):
         algo = ApplyF0(len(k_list), qudit)
         algo += ApplyZ_all(word, k_list, qudit)
         return algo
@@ -99,7 +99,7 @@ class ReversTest(Program):
         algo = self._get_algo(word, k_list, qudit)
         self.instructions = algo.instructions
 
-    def _get_algo(word, k_list, qudit):
+    def _get_algo(self, word, k_list, qudit):
         algo = ApplyF0conjugate(len(k_list), qudit)
         algo += ApplyZconjugate_all(word, k_list, qudit)
         return algo

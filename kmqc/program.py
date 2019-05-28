@@ -57,3 +57,9 @@ class Program(object):
 
     def __iter__(self):
         return self.instructions.__iter__()
+
+    def __getitem__(self, index):
+        return self.instructions[index]
+
+    def __delitem__(self, index):
+        del self.instructions[index]
