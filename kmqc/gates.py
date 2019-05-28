@@ -36,6 +36,56 @@ def _to_qudit(qudit):
         raise TypeError('Кубит должен быть целого типа или Qudit!')
 
 
+class ApplyX(Gate):
+    """
+    X_i(x, y) = [
+        [I_{i - 1}, 0, 0, 0, ],
+        [0, x / sqrt(|x|^2 + |y|^2), -y / sqrt(|x|^2 + |y|^2), 0, ],
+        [0, y^* / sqrt(|x|^2 + |y|^2), x^* / sqrt(|x|^2 + |y|^2), 0, ],
+        [0, 0, 0, I_{d - i - 1}, ]]
+    """
+
+    def __init__(self, i, x, y, qudit):
+        params = {'i': i, 'x': x, 'y': y, }
+        super().__init__('applyX', params, [_to_qudit(qudit), ])
+
+
+class ApplyZ(Gate):
+    """
+    Z_d(theta) = \sum_{j=0}^{d-1}
+        e^{i (1 - \left| {sgn (d - 1 - j) }\right|)} \ket{j}\bra{j}
+    """
+
+    def __init__(self, i, theta, qudit):
+        params = {'i': i, 'theta': theta, }
+        super().__init__('applyZ', params, [_to_qudit(qudit), ])
+
+
+class ApplyXconjugate(Gate):
+    """
+    X_i^*(x, y) = [
+        [I_{i - 1}, 0, 0, 0, ],
+        [0, x / sqrt(|x|^2 + |y|^2), -y / sqrt(|x|^2 + |y|^2), 0, ],
+        [0, y^* / sqrt(|x|^2 + |y|^2), x^* / sqrt(|x|^2 + |y|^2), 0, ],
+        [0, 0, 0, I_{d - i - 1}, ]]^*
+    """
+
+    def __init__(self, i, x, y, qudit):
+        params = {'i': i, 'x': x, 'y': y, }
+        super().__init__('applyXconjugate', params, [_to_qudit(qudit), ])
+
+
+class ApplyZconjugate(Gate):
+    """
+    {Z}_d^\dag(\theta) = {\sum_{j=0}^{d-1}
+        e^{i (1 - \left| {sgn (d - 1 - j) }\right|)} \ket{j}\bra{j}}\dag
+    """
+
+    def __init__(self, i, tau, qudit):
+        params = {'i': i, 'theta': theta, }
+        super().__init__('applyZconjugate', params, [_to_qudit(qudit), ])
+
+
 class Rx(QubitGate):
     """
     Rx(mu) = [[cos(mu / 2), -1j * sin(mu / 2)],
