@@ -81,7 +81,7 @@ class ApplyZconjugate(Gate):
         e^{i (1 - \left| {sgn (d - 1 - j) }\right|)} \ket{j}\bra{j}}\dag
     """
 
-    def __init__(self, i, tau, qudit):
+    def __init__(self, i, theta, qudit):
         params = {'i': i, 'theta': theta, }
         super().__init__('applyZconjugate', params, [_to_qudit(qudit), ])
 
