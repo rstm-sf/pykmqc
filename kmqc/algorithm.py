@@ -34,7 +34,7 @@ class ApplyF0(Program):
 
     def _set_instr(self, dim, qudit):
         self.instructions = list()
-        for i in range(dim):
+        for i in range(1, dim):
             b = math.sqrt((dim - i) / dim)
             self.append_instruction(
                 ApplyX(i, math.sqrt(1.0 / dim), b, qudit))
@@ -47,7 +47,7 @@ class ApplyF0conjugate(Program):
 
     def _set_instr(self, dim, qudit):
         self.instructions = list()
-        for i in reversed(range(dim)):
+        for i in reversed(range(1, dim)):
             b = math.sqrt((dim - i) / dim)
             self.append_instruction(
                 ApplyXconjugate(i, math.sqrt(1.0 / dim), b, qudit))
