@@ -35,8 +35,9 @@ from kmqc.program import Program
 
 __all__ = [
     'connect', 'Connection',
-    'Qudit'
-    'config'
+    'Qudit',
+    'Qubit',
+    'config',
     'DEFINITE_GATES',
     'Program',
 ]
