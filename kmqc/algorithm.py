@@ -38,7 +38,6 @@ class ApplyF0(Program):
             b = math.sqrt((dim - i) / dim)
             self.append_instruction(
                 ApplyX(i, math.sqrt(1.0 / dim), b, qudit))
-        return instr
 
 
 class ApplyF0conjugate(Program):
