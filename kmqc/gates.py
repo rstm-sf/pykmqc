@@ -248,6 +248,10 @@ CCNOT = [[1, 0, 0, 0, 0, 0, 0, 0],
 """
 
 DEFINITE_GATES = {
+    'ApplyX': ApplyX,
+    'ApplyZ': ApplyZ,
+    'ApplyXconjugate': ApplyXconjugate,
+    'ApplyZconjugate': ApplyZconjugate,
     'Rx': Rx,
     'Ry': Ry,
     'Rz': Rz,
