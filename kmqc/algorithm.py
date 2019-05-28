@@ -68,7 +68,7 @@ class ApplyZ_all(Program):
 class ApplyZconjugate_all(Program):
 
     def __init__(self, word, n, k_list, qudit):
-        self._set_instr(word, k_list, qudit)
+        self._set_instr(word, n, k_list, qudit)
 
     def _set_instr(self, word, n, k_list, qudit):
         self.instructions = list()
