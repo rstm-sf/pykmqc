@@ -20,12 +20,14 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from kmqc import algorithm
 from kmqc import api
 from kmqc import base
 from kmqc import config
 from kmqc import gates
 from kmqc import program
 
+from kmqc.algorithm import HashFun, ReversTest
 from kmqc.api import Connection
 from kmqc.base import Qudit, Qubit
 from kmqc.config import config
@@ -34,9 +36,9 @@ from kmqc.program import Program
 
 
 __all__ = [
+    'HashFun', 'ReversTest',
     'connect', 'Connection',
-    'Qudit',
-    'Qubit',
+    'Qudit', 'Qubit',
     'config',
     'DEFINITE_GATES',
     'Program',
