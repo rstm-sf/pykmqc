@@ -53,10 +53,10 @@ class Gate(Instruction):
         if not isinstance(name, string_types):
             raise TypeError('Название гейта должно быть строкового типа!')
         if not isinstance(qudits, list) or not qudits:
-            raise TypeError('Кубиты должны передаваться в непустом списке!')
+            raise TypeError('Кудиты должны передаваться в непустом списке!')
         for q in qudits:
             if not isinstance(q, Qudit):
-                raise TypeError('Кубиты должны иметь тип Qudit!')
+                raise TypeError('Кудиты должны иметь тип Qudit!')
         self.name = name
         self.params = params
         self.qudits = qudits
