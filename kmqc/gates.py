@@ -24,7 +24,7 @@ import math
 
 from six import integer_types
 
-from kmqc.base import QubitGate, Qudit
+from kmqc.base import Gate, QubitGate, Qudit
 
 
 def _to_qudit(qudit):
