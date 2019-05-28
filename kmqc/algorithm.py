@@ -30,13 +30,13 @@ from kmqc.program import Program
 class ApplyF0(Program):
 
     def __init__(self, dim, qudit):
-        self.instructions = self._get_instr(dim, qudit)
+        self._set_instr(dim, qudit)
 
-    def _get_instr(self, dim, qudit):
-        instr = list()
+    def _set_instr(self, dim, qudit):
+        self.instructions = list()
         for i in range(dim):
             b = math.sqrt((dim - i) / dim)
-            instr.append_instruction(
+            self.append_instruction(
                 ApplyX(i, math.sqrt(1.0 / dim), b, qudit))
         return instr
 
@@ -44,26 +44,25 @@ class ApplyF0(Program):
 class ApplyF0conjugate(Program):
 
     def __init__(self, dim, qudit):
-        self.instructions = self._get_instr(dim, qudit)
+        self._set_instr(dim, qudit)
 
-    def _get_instr(self, dim, qudit):
-        instr = list()
+    def _set_instr(self, dim, qudit):
+        self.instructions = list()
         for i in reversed(range(dim)):
             b = math.sqrt((dim - i) / dim)
-            instr.append_instruction(
+            self.append_instruction(
                 ApplyXconjugate(i, math.sqrt(1.0 / dim), b, qudit))
-        return instr
 
 
 class ApplyZ_all(Program):
 
     def __init__(self, word, k_list, qudit):
-        self.instructions = self._get_instr(word, k_list, qudit)
+        self._set_instr(word, k_list, qudit)
 
-    def _get_instr(self, word, k_list, qudit):
-        instr = list()
+    def _set_instr(self, word, k_list, qudit):
+        self.instructions = list()
         for i in range(len(k_list)):
-            instr.append_instruction(
+            self.append_instruction(
                 ApplyZ(i, (word * k[i]) / n, qudit))
         return instr
 
@@ -71,12 +70,12 @@ class ApplyZ_all(Program):
 class ApplyZconjugate_all(Program):
 
     def __init__(self, word, k_list, qudit):
-        self.instructions = self._get_instr(word, k_list, qudit)
+        self._set_instr(word, k_list, qudit)
 
-    def _get_instr(self, word, k_list, qudit):
-        instr = list()
+    def _set_instr(self, word, k_list, qudit):
+        self.instructions = list()
         for i in reversed(range(len(k_list))):
-            instr.append_instruction(
+            self.append_instruction(
                 ApplyZconjugate(i, (word * k[i]) / n, qudit))
         return instr
 
