@@ -81,7 +81,7 @@ class ApplyZconjugate_all(Program):
 
 class HashFun(Program):
 
-    def __init__(self, word, k_list, qudit):
+    def __init__(self, word, n, k_list, qudit):
         algo = self._get_algo(word, n, k_list, qudit)
         self.instructions = algo.instructions
 
@@ -93,7 +93,7 @@ class HashFun(Program):
 
 class ReversTest(Program):
 
-    def __init__(self, arg):
+    def __init__(self, word, n, k_list, qudit):
         algo = self._get_algo(word, n, k_list, qudit)
         self.instructions = algo.instructions
 
