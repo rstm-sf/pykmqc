@@ -53,7 +53,6 @@ class InitDimQudit(Instruction):
         self.dimension = dimension
 
 
-
 class Gate(Instruction):
 
     def __init__(self, name, params, qudits):

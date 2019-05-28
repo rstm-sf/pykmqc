@@ -22,6 +22,8 @@
 
 import requests
 
+from kmqc.base import InitDimQudit
+
 
 class Connection(object):
 
