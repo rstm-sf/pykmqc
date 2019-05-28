@@ -48,7 +48,7 @@ class ApplyF0conjugate(Program):
 
     def _get_instr(dim, qudit):
         instr = list()
-        for i in reversed(range(dim):
+        for i in reversed(range(dim)):
             b = math.sqrt((dim - i) / dim)
             instr.append_instruction(
                 ApplyXconjugate(i, math.sqrt(1.0 / dim), b, qudit))
