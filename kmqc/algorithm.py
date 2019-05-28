@@ -55,10 +55,10 @@ class ApplyF0conjugate(Program):
 
 class ApplyZ_all(Program):
 
-    def __init__(self, word, k_list, qudit):
+    def __init__(self, word, n, k_list, qudit):
         self._set_instr(word, k_list, qudit)
 
-    def _set_instr(self, word, k_list, qudit):
+    def _set_instr(self, word, n, k_list, qudit):
         self.instructions = list()
         for i in range(len(k_list)):
             self.append_instruction(
@@ -68,10 +68,10 @@ class ApplyZ_all(Program):
 
 class ApplyZconjugate_all(Program):
 
-    def __init__(self, word, k_list, qudit):
+    def __init__(self, word, n, k_list, qudit):
         self._set_instr(word, k_list, qudit)
 
-    def _set_instr(self, word, k_list, qudit):
+    def _set_instr(self, word, n, k_list, qudit):
         self.instructions = list()
         for i in reversed(range(len(k_list))):
             self.append_instruction(
@@ -82,22 +82,22 @@ class ApplyZconjugate_all(Program):
 class HashFun(Program):
 
     def __init__(self, word, k_list, qudit):
-        algo = self._get_algo(word, k_list, qudit)
+        algo = self._get_algo(word, n, k_list, qudit)
         self.instructions = algo.instructions
 
-    def _get_algo(self, word, k_list, qudit):
+    def _get_algo(self, word, n, k_list, qudit):
         algo = ApplyF0(len(k_list), qudit)
-        algo += ApplyZ_all(word, k_list, qudit)
+        algo += ApplyZ_all(word, n, k_list, qudit)
         return algo
 
 
 class ReversTest(Program):
 
     def __init__(self, arg):
-        algo = self._get_algo(word, k_list, qudit)
+        algo = self._get_algo(word, n, k_list, qudit)
         self.instructions = algo.instructions
 
-    def _get_algo(self, word, k_list, qudit):
+    def _get_algo(self, word, n, k_list, qudit):
         algo = ApplyF0conjugate(len(k_list), qudit)
-        algo += ApplyZconjugate_all(word, k_list, qudit)
+        algo += ApplyZconjugate_all(word, n, k_list, qudit)
         return algo
