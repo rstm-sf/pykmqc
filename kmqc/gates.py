@@ -93,7 +93,7 @@ class Measure(Gate):
     """
 
     def __init__(self, idx_creg, qudit):
-        params = {'i': 'idx_creg': idx_creg, }
+        params = {'idx_creg': idx_creg, }
         super().__init__('measure', params, [_to_qudit(qudit), ])
 
 
