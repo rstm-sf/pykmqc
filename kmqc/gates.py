@@ -86,6 +86,17 @@ class ApplyZconjugate(Gate):
         super().__init__('applyZconjugate', params, [_to_qudit(qudit), ])
 
 
+class Measure(Gate):
+    """
+    {Z}_d^\dag(\theta) = {\sum_{j=0}^{d-1}
+        e^{i (1 - \left| {sgn (d - 1 - j) }\right|)} \ket{j}\bra{j}}\dag
+    """
+
+    def __init__(self, idx_creg, qudit):
+        params = {'i': 'idx_creg': idx_creg, }
+        super().__init__('measure', params, [_to_qudit(qudit), ])
+
+
 class Rx(QubitGate):
     """
     Rx(mu) = [[cos(mu / 2), -1j * sin(mu / 2)],
@@ -252,6 +263,7 @@ DEFINITE_GATES = {
     'ApplyZ': ApplyZ,
     'ApplyXconjugate': ApplyXconjugate,
     'ApplyZconjugate': ApplyZconjugate,
+    'Measure': Measure,
     'Rx': Rx,
     'Ry': Ry,
     'Rz': Rz,
