@@ -63,7 +63,6 @@ class ApplyZ_all(Program):
         for i in range(len(k_list)):
             self.append_instruction(
                 ApplyZ(i, (word * k_list[i]) / n, qudit))
-        return instr
 
 
 class ApplyZconjugate_all(Program):
@@ -76,7 +75,6 @@ class ApplyZconjugate_all(Program):
         for i in reversed(range(len(k_list))):
             self.append_instruction(
                 ApplyZconjugate(i, (word * k_list[i]) / n, qudit))
-        return instr
 
 
 class HashFun(Program):
