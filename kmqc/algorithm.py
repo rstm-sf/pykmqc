@@ -96,6 +96,6 @@ class ReversTest(Program):
         self.instructions = algo.instructions
 
     def _get_algo(self, word, n, k_list, qudit):
-        algo = ApplyF0conjugate(len(k_list), qudit)
-        algo += ApplyZconjugate_all(word, n, k_list, qudit)
+        algo = ApplyZconjugate_all(word, n, k_list, qudit)
+        algo += ApplyF0conjugate(len(k_list), qudit)
         return algo
